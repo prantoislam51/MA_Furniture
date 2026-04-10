@@ -1,0 +1,31 @@
+:root {
+  --noir: #0f0d0b;
+  --noir-2: #1a1612;
+  --noir-3: #252018;
+  --brass: #c9a84c;
+  --brass-light: #e8c97a;
+  --brass-dim: #7a6030;
+  --cream: #f5edd8;
+  --cream-dim: #b8a98c;
+  --cream-muted: #6b5e4a;
+  --ember: #d4622a;
+  --forest: #2d6a4f;
+  --border: rgba(201, 168, 76, 0.15);
+  --border-hover: rgba(201, 168, 76, 0.4);
+  --glow: rgba(201, 168, 76, 0.08);
+
+  --font-display: "Cormorant Garamond", "Hind Siliguri", serif;
+  --font-ui: "DM Sans", "Hind Siliguri", sans-serif;
+  --font-mono: "Space Mono", monospace;
+
+  --hero-h1: clamp(2.4rem, 5vw, 5rem);
+  --section-h2: clamp(1.8rem, 3.5vw, 3.5rem);
+  --body-size: clamp(0.875rem, 1.2vw, 1.05rem);
+  --card-title: clamp(0.875rem, 1.5vw, 1rem);
+
+  --section-padding: clamp(60px, 8vw, 120px);
+  --card-gap: clamp(12px, 2vw, 24px);
+  --container-px: clamp(16px, 4vw, 80px);
+
+  --noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+}

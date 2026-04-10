@@ -1,0 +1,258 @@
+.category-hero,
+.search-hero {
+  min-height: 260px;
+  display: grid;
+  align-items: center;
+  background: linear-gradient(130deg, color-mix(in srgb, var(--cat-color, var(--brass)) 60%, #000 40%), var(--noir));
+  border-bottom: 1px solid var(--border);
+}
+
+.search-hero {
+  background: linear-gradient(160deg, rgba(201, 168, 76, 0.16), transparent), var(--noir-2);
+}
+
+.category-hero i {
+  font-size: 4rem;
+}
+
+.category-hero h1,
+.search-hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+}
+
+.crumb {
+  color: var(--cream-dim);
+  margin-bottom: 10px;
+}
+
+.listing-layout {
+  background: var(--noir-2);
+}
+
+.listing-grid {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 26px;
+}
+
+.listing-grid.single-main {
+  grid-template-columns: 1fr;
+}
+
+.filter-sidebar {
+  border: 1px solid var(--border);
+  height: fit-content;
+  padding: 16px;
+  position: sticky;
+  top: 100px;
+}
+
+.filter-sidebar h3 {
+  font-family: var(--font-display);
+  margin-bottom: 12px;
+}
+
+.filter-form {
+  display: grid;
+  gap: 8px;
+}
+
+.cat-links {
+  display: grid;
+  margin-top: 14px;
+}
+
+.cat-links a {
+  color: var(--cream-dim);
+  border-left: 2px solid transparent;
+  padding: 8px;
+}
+
+.cat-links a.active,
+.cat-links a:hover {
+  color: var(--brass);
+  border-left-color: var(--brass);
+}
+
+.list-top {
+  margin-bottom: 18px;
+  color: var(--cream-dim);
+}
+
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  border: 1px dashed var(--border);
+}
+
+.empty-state i {
+  font-size: 2rem;
+  color: var(--brass);
+}
+
+.search-hero-form {
+  margin-top: 12px;
+  display: grid;
+  grid-template-columns: 1.4fr repeat(4, 1fr) auto;
+  gap: 10px;
+}
+
+.admin-auth {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(circle at top, rgba(201, 168, 76, 0.18), transparent 45%), var(--noir);
+}
+
+.admin-auth-card {
+  width: min(420px, 92vw);
+  border: 1px solid var(--border-hover);
+  background: var(--noir-2);
+  padding: 26px;
+}
+
+.admin-auth-card h1 {
+  font-family: var(--font-display);
+  letter-spacing: 0.22em;
+}
+
+.admin-auth-card h2 {
+  margin-bottom: 12px;
+}
+
+.admin-auth-card form {
+  display: grid;
+  gap: 10px;
+}
+
+.admin-shell {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  min-height: 100vh;
+}
+
+.admin-shell.hidden { display: none; }
+
+.admin-sidebar {
+  border-right: 1px solid var(--border);
+  background: #110f0d;
+  padding: 22px 14px;
+  display: grid;
+  align-content: start;
+  gap: 8px;
+}
+
+.admin-tab-btn {
+  text-align: left;
+  border: 1px solid var(--border);
+  padding: 10px 12px;
+  cursor: pointer;
+}
+
+.admin-tab-btn.active {
+  border-color: var(--border-hover);
+  background: rgba(201, 168, 76, 0.09);
+}
+
+.admin-main {
+  padding: 20px;
+}
+
+.admin-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.admin-stat {
+  border: 1px solid var(--border);
+  background: var(--noir-2);
+  padding: 12px;
+}
+
+.admin-stat h4 { color: var(--brass); font-size: 1.8rem; }
+
+.admin-tab { display: none; }
+.admin-tab.active { display: block; }
+
+.admin-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.table-wrap {
+  overflow: auto;
+  border: 1px solid var(--border);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border-bottom: 1px solid var(--border);
+  padding: 8px;
+  text-align: left;
+  font-size: 0.88rem;
+}
+
+td img {
+  width: 58px;
+  height: 44px;
+  object-fit: cover;
+}
+
+.admin-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.admin-form-grid textarea,
+.admin-form-grid button {
+  grid-column: 1 / -1;
+}
+
+.admin-cats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.admin-cat-item {
+  border: 1px solid var(--border);
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.pagination button {
+  border: 1px solid var(--border);
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.pagination button.active {
+  background: var(--brass);
+  color: var(--noir);
+}
+
+.kicker {
+  color: var(--brass);
+  font-family: var(--font-mono);
+  letter-spacing: 0.3em;
+  font-size: 0.72rem;
+}

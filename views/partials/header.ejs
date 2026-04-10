@@ -1,0 +1,65 @@
+<header class="site-header" id="siteHeader">
+  <div class="container header-inner">
+    <a href="/" class="brand" aria-label="MA Furniture Home">
+      <span class="brand-line"></span>
+      <span>
+        <strong>MA</strong>
+        <small>FURNITURE</small>
+      </span>
+    </a>
+
+    <nav class="desktop-nav" aria-label="Primary">
+      <a class="nav-link <%= currentPath === '/' ? 'active' : '' %>" href="/">হোম</a>
+      <div class="nav-dropdown-wrap">
+        <button class="nav-link nav-dropdown-btn" type="button">ক্যাটাগরি <i class="fa-solid fa-chevron-down"></i></button>
+        <div class="mega-dropdown">
+          <div class="mega-grid">
+            <% allCategories.forEach(function(cat){ %>
+              <a href="/category/<%= cat.id %>" class="mega-item">
+                <i class="<%= cat.faIcon %>" style="color:<%= cat.color %>"></i>
+                <div>
+                  <h4><%= cat.name %></h4>
+                  <p><%= cat.productCount %> টি পণ্য</p>
+                </div>
+              </a>
+            <% }) %>
+          </div>
+        </div>
+      </div>
+      <a class="nav-link" href="#order-process">অর্ডার প্রক্রিয়া</a>
+      <a class="nav-link" href="#contact">যোগাযোগ</a>
+    </nav>
+
+    <div class="header-right">
+      <a class="icon-btn" href="/search" aria-label="Search"><i class="fa-regular fa-magnifying-glass"></i></a>
+      <span class="divider"></span>
+      <a class="wa-mini" href="https://wa.me/8801700000000" target="_blank" rel="noopener">
+        <i class="fa-brands fa-whatsapp"></i>
+        01700-000000
+      </a>
+      <button class="hamburger" id="mobileMenuOpen" type="button" aria-label="Open menu" aria-controls="mobileNav" aria-expanded="false">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-nav-overlay" id="mobileNav" aria-hidden="true">
+    <button class="mobile-close" id="mobileMenuClose" type="button" aria-label="Close menu">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    <nav class="mobile-nav-links" aria-label="Mobile primary">
+      <a href="/">হোম</a>
+      <button class="mobile-accordion-btn" type="button">ক্যাটাগরি</button>
+      <div class="mobile-cats">
+        <% allCategories.forEach(function(cat){ %>
+          <a href="/category/<%= cat.id %>"><i class="<%= cat.faIcon %>"></i> <%= cat.name %></a>
+        <% }) %>
+      </div>
+      <a href="#order-process">অর্ডার প্রক্রিয়া</a>
+      <a href="#contact">যোগাযোগ</a>
+    </nav>
+    <a class="mobile-wa" href="https://wa.me/8801700000000" target="_blank" rel="noopener">
+      <i class="fa-brands fa-whatsapp"></i> WhatsApp এ অর্ডার করুন
+    </a>
+  </div>
+</header>

@@ -1,0 +1,43 @@
+<article class="product-card reveal" data-product-id="<%= product.id %>">
+  <div class="card-image-wrap">
+    <img src="<%= product.image %>" alt="<%= product.nameEn %>" loading="lazy" />
+
+    <div class="badges">
+      <% if (product.originalPrice > product.price) { %>
+        <span class="badge badge-sale">৳<%= (product.originalPrice - product.price).toLocaleString('bn-BD') %> ছাড়</span>
+      <% } %>
+      <% if (product.isNew) { %>
+        <span class="badge badge-new">নতুন</span>
+      <% } %>
+      <% if (product.isTopSelling) { %>
+        <span class="badge badge-hot">🔥 জনপ্রিয়</span>
+      <% } %>
+    </div>
+
+    <div class="quick-actions">
+      <a class="qa-btn qa-wa" target="_blank" rel="noopener" href="https://wa.me/8801700000000?text=<%= encodeURIComponent(`আসসালামু আলাইকুম! আমি ${product.name} (${product.id}) অর্ডার করতে চাই।`) %>">
+        <i class="fa-brands fa-whatsapp"></i>
+      </a>
+      <button class="qa-btn qa-copy" type="button" data-copy-id="<%= product.id %>">
+        <i class="fa-regular fa-copy"></i>
+      </button>
+    </div>
+
+    <div class="card-id">#<%= product.id %></div>
+  </div>
+
+  <div class="card-body">
+    <p class="category-pill"><%= product.category ? product.category.name : product.categoryId %></p>
+    <h3><%= product.name %></h3>
+    <p class="rating">★★★★★ <span>(<%= product.reviewCount %>)</span></p>
+
+    <div class="price-row">
+      <strong>৳<%= product.price.toLocaleString('bn-BD') %></strong>
+      <% if (product.originalPrice > product.price) { %>
+        <del>৳<%= product.originalPrice.toLocaleString('bn-BD') %></del>
+      <% } %>
+    </div>
+
+    <button class="btn-outline full product-modal-trigger" type="button">বিস্তারিত দেখুন <i class="fa-solid fa-arrow-right"></i></button>
+  </div>
+</article>

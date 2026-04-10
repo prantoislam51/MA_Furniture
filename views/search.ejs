@@ -1,0 +1,53 @@
+<%- include('partials/head') %>
+<%- include('partials/header') %>
+
+<section class="search-hero">
+  <div class="container">
+    <p class="crumb"><a href="/">হোম</a> > <span>খুঁজুন</span> <%= query.q ? '> "' + query.q + '"' : '' %></p>
+    <h1>খুঁজুন আপনার পছন্দের আসবাবপত্র</h1>
+    <form action="/search" method="GET" class="search-hero-form" id="searchPageForm">
+      <input type="text" name="q" value="<%= query.q || '' %>" placeholder="পণ্যের নাম, ট্যাগ, আইডি" />
+      <select name="cat">
+        <option value="">সব ক্যাটাগরি</option>
+        <% allCategories.forEach(function(cat){ %>
+          <option value="<%= cat.id %>" <%= query.cat === cat.id ? 'selected' : '' %>><%= cat.name %></option>
+        <% }) %>
+      </select>
+      <input type="number" name="min" value="<%= query.min || '' %>" placeholder="৳ থেকে" />
+      <input type="number" name="max" value="<%= query.max || '' %>" placeholder="৳ পর্যন্ত" />
+      <select name="sort">
+        <option value="featured" <%= query.sort === 'featured' ? 'selected' : '' %>>Featured</option>
+        <option value="newest" <%= query.sort === 'newest' ? 'selected' : '' %>>নতুন পণ্য আগে</option>
+        <option value="price-asc" <%= query.sort === 'price-asc' ? 'selected' : '' %>>দাম: কম থেকে বেশি</option>
+        <option value="price-desc" <%= query.sort === 'price-desc' ? 'selected' : '' %>>দাম: বেশি থেকে কম</option>
+        <option value="top" <%= query.sort === 'top' ? 'selected' : '' %>>জনপ্রিয়তা অনুযায়ী</option>
+      </select>
+      <button class="btn-brass" type="submit">অনুসন্ধান</button>
+    </form>
+  </div>
+</section>
+
+<section class="section listing-layout">
+  <div class="container listing-grid single-main">
+    <main>
+      <div class="list-top">
+        <p><%= results.length %> টি পণ্য পাওয়া গেছে <%= query.q ? '"' + query.q + '" এর জন্য' : '' %></p>
+      </div>
+      <% if (!results.length) { %>
+        <div class="empty-state">
+          <i class="fa-regular fa-magnifying-glass"></i>
+          <h3>কোন পণ্য পাওয়া যায়নি</h3>
+          <a href="/" class="btn-outline">হোমে ফিরে যান</a>
+        </div>
+      <% } else { %>
+        <div class="product-grid cols-dynamic" id="liveResults">
+          <% results.forEach(function(product){ %>
+            <%- include('partials/product-card', { product }) %>
+          <% }) %>
+        </div>
+      <% } %>
+    </main>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

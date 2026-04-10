@@ -1,0 +1,56 @@
+<footer class="site-footer" id="contact">
+  <div class="container footer-grid">
+    <div class="footer-col footer-col-brand">
+      <h3>MA</h3>
+      <p>মানসম্পন্ন আসবাবপত্র, আধুনিক ডিজাইন, নির্ভরযোগ্য সার্ভিস।</p>
+      <div class="socials">
+        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#"><i class="fa-brands fa-youtube"></i></a>
+      </div>
+    </div>
+    <div class="footer-col footer-col-links">
+      <h4>দ্রুত লিংক</h4>
+      <a href="/">হোম</a>
+      <a href="/search">খুঁজুন</a>
+      <a href="#order-process">অর্ডার প্রক্রিয়া</a>
+      <a href="#contact">যোগাযোগ</a>
+    </div>
+    <div class="footer-col footer-col-cats">
+      <h4>ক্যাটাগরি</h4>
+      <% allCategories.forEach(function(cat){ %>
+        <a href="/category/<%= cat.id %>"><%= cat.name %></a>
+      <% }) %>
+    </div>
+    <div class="footer-col footer-col-contact">
+      <h4>যোগাযোগ</h4>
+      <p>ধানমন্ডি, ঢাকা 1205</p>
+      <p>01700-000000</p>
+      <a class="wa-mini" href="https://wa.me/8801700000000" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="container footer-bottom-inner">
+      <p>© 2024 আল-আমিন ফার্নিচার</p>
+      <p>মানসম্পন্ন আসবাবপত্র, সেরা দামে</p>
+    </div>
+  </div>
+</footer>
+
+<div class="floating-wa" id="floatingWa">
+  <a href="https://wa.me/8801700000000" target="_blank" rel="noopener">
+    <i class="fa-brands fa-whatsapp"></i>
+    <span>অর্ডার করুন</span>
+  </a>
+</div>
+
+<div class="product-modal" id="productModal" aria-hidden="true"></div>
+
+<script src="/js/main.js" defer></script>
+<script src="/js/slider.js" defer></script>
+<script src="/js/search.js" defer></script>
+<script src="/js/modal.js" defer></script>
+<script src="/js/admin.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<%- include('partials/head') %>
+<%- include('partials/header') %>
+
+<section class="category-hero" style="--cat-color:<%= category.color %>">
+  <div class="container">
+    <p class="crumb"><a href="/">হোম</a> > <span><%= category.name %></span></p>
+    <i class="<%= category.faIcon %>"></i>
+    <h1><%= category.name %></h1>
+  </div>
+</section>
+
+<section class="section listing-layout">
+  <div class="container listing-grid">
+    <aside class="filter-sidebar">
+      <h3>ফিল্টার করুন</h3>
+      <form action="/category/<%= category.id %>" method="GET" class="filter-form">
+        <label>দাম: সর্বনিম্ন</label>
+        <input type="number" name="min" value="<%= query.min || '' %>" placeholder="৳ থেকে" />
+        <label>দাম: সর্বোচ্চ</label>
+        <input type="number" name="max" value="<%= query.max || '' %>" placeholder="৳ পর্যন্ত" />
+
+        <label>সাজানো</label>
+        <select name="sort">
+          <option value="newest" <%= query.sort === 'newest' ? 'selected' : '' %>>নতুন পণ্য আগে</option>
+          <option value="price-asc" <%= query.sort === 'price-asc' ? 'selected' : '' %>>দাম: কম থেকে বেশি</option>
+          <option value="price-desc" <%= query.sort === 'price-desc' ? 'selected' : '' %>>দাম: বেশি থেকে কম</option>
+          <option value="top" <%= query.sort === 'top' ? 'selected' : '' %>>জনপ্রিয়তা অনুযায়ী</option>
+        </select>
+
+        <button class="btn-brass" type="submit">প্রয়োগ করুন</button>
+      </form>
+
+      <div class="cat-links">
+        <% allCategories.forEach(function(cat){ %>
+          <a class="<%= cat.id === category.id ? 'active' : '' %>" href="/category/<%= cat.id %>"><%= cat.name %></a>
+        <% }) %>
+      </div>
+    </aside>
+
+    <main>
+      <div class="list-top">
+        <p><%= results.length %> টি পণ্য পাওয়া গেছে</p>
+      </div>
+
+      <% if (!results.length) { %>
+        <div class="empty-state">
+          <i class="fa-regular fa-box-open"></i>
+          <h3>এই ক্যাটাগরিতে কোন পণ্য নেই</h3>
+          <a href="/" class="btn-outline">হোমে ফিরে যান</a>
+        </div>
+      <% } else { %>
+        <div class="product-grid cols-dynamic">
+          <% results.forEach(function(product){ %>
+            <%- include('partials/product-card', { product }) %>
+          <% }) %>
+        </div>
+      <% } %>
+    </main>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,85 @@
+<%- include('partials/head') %>
+
+<section class="admin-auth" id="adminAuth">
+  <div class="admin-auth-card">
+    <h1>MA FURNITURE</h1>
+    <h2>অ্যাডমিন প্যানেল</h2>
+    <form id="adminLoginForm">
+      <input type="text" id="adminUsername" placeholder="ইউজারনেম লিখুন" autocomplete="username" required />
+      <input type="password" id="adminPassword" placeholder="পাসওয়ার্ড লিখুন" required />
+      <button class="btn-brass full" type="submit">প্রবেশ করুন</button>
+    </form>
+    <p class="admin-demo-cred">Demo Login: username <strong>admin</strong> / password <strong>admin2024</strong></p>
+  </div>
+</section>
+
+<section class="admin-shell hidden" id="adminShell">
+  <aside class="admin-sidebar">
+    <h3>ড্যাশবোর্ড</h3>
+    <button class="admin-tab-btn active" data-tab="list">📦 পণ্য তালিকা</button>
+    <button class="admin-tab-btn" data-tab="add">➕ নতুন পণ্য যোগ</button>
+    <button class="admin-tab-btn" data-tab="category">🗂️ ক্যাটাগরি</button>
+    <button class="admin-tab-btn" data-tab="export">💾 ডেটা Export</button>
+  </aside>
+
+  <main class="admin-main">
+    <div class="admin-stats" id="adminStats"></div>
+
+    <section class="admin-tab active" id="tab-list">
+      <div class="admin-head">
+        <h2>পণ্য তালিকা</h2>
+        <input id="adminSearch" type="text" placeholder="ID বা নাম দিয়ে খুঁজুন" />
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>ID</th><th>Image</th><th>Name</th><th>Category</th><th>Price</th><th>Stock</th><th>Actions</th></tr>
+          </thead>
+          <tbody id="adminTableBody"></tbody>
+        </table>
+      </div>
+      <div class="pagination" id="adminPagination"></div>
+    </section>
+
+    <section class="admin-tab" id="tab-add">
+      <h2>নতুন পণ্য যোগ</h2>
+      <form id="addProductForm" class="admin-form-grid">
+        <input name="id" placeholder="ID*" required />
+        <input name="name" placeholder="Name (BN)*" required />
+        <input name="nameEn" placeholder="Name (EN)*" required />
+        <select name="categoryId" id="addCategorySelect" required></select>
+        <input name="price" type="number" placeholder="Price*" required />
+        <input name="originalPrice" type="number" placeholder="Original Price" />
+        <input name="image" placeholder="Image URL" />
+        <input name="image2" placeholder="Image URL 2" />
+        <input name="image3" placeholder="Image URL 3" />
+        <input name="material" placeholder="Material" />
+        <input name="finish" placeholder="Finish" />
+        <input name="dimensions" placeholder="Dimensions" />
+        <input name="color" placeholder="Color" />
+        <input name="weight" placeholder="Weight" />
+        <textarea name="description" placeholder="Description"></textarea>
+        <label><input type="checkbox" name="inStock" checked /> In Stock</label>
+        <label><input type="checkbox" name="isFeatured" /> Featured</label>
+        <label><input type="checkbox" name="isTopSelling" /> Top Selling</label>
+        <label><input type="checkbox" name="isNew" /> New</label>
+        <button class="btn-brass" type="submit">পণ্য যুক্ত করুন</button>
+      </form>
+    </section>
+
+    <section class="admin-tab" id="tab-category">
+      <h2>ক্যাটাগরি সমূহ</h2>
+      <div id="adminCategoryList" class="admin-cats"></div>
+    </section>
+
+    <section class="admin-tab" id="tab-export">
+      <h2>ডেটা Export</h2>
+      <button class="btn-outline" id="copyProductsBtn">Products JSON কপি করুন</button>
+      <button class="btn-outline" id="copyCategoriesBtn">Categories JSON কপি করুন</button>
+      <p>কপি করা ডেটা data/products.js এবং data/categories.js ফাইলে আপডেট করুন।</p>
+      <pre id="exportOutput"></pre>
+    </section>
+  </main>
+</section>
+
+<%- include('partials/footer') %>

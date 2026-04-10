@@ -1,0 +1,198 @@
+<%- include('partials/head') %>
+
+<section class="announcement-bar" aria-label="Announcement">
+  <div class="marquee-track">
+    <span>✦ বিনামূল্যে হোম ডেলিভারি (ঢাকার মধ্যে) ✦ কাস্টম অর্ডার গ্রহণ করা হয় ✦ ইনস্টলেশন সার্ভিস উপলব্ধ ✦ ১ বছরের ওয়ারেন্টি সকল পণ্যে ✦</span>
+    <span>✦ বিনামূল্যে হোম ডেলিভারি (ঢাকার মধ্যে) ✦ কাস্টম অর্ডার গ্রহণ করা হয় ✦ ইনস্টলেশন সার্ভিস উপলব্ধ ✦ ১ বছরের ওয়ারেন্টি সকল পণ্যে ✦</span>
+  </div>
+</section>
+
+<%- include('partials/header') %>
+
+<section class="hero" id="hero">
+  <div class="container hero-grid">
+    <div class="hero-left">
+      <p class="hero-kicker">FEATURED COLLECTION ✦ 2024</p>
+      <h1 class="hero-title split-text">
+        <span>আপনার ঘরকে</span>
+        <span>করুন আরও</span>
+        <span class="last-line">সুন্দর</span>
+      </h1>
+      <p class="hero-subtitle">সর্বোচ্চ মানের হাতে তৈরি আসবাবপত্র</p>
+      <p class="hero-price">মাত্র <strong>৳১২,৫০০</strong> থেকে শুরু</p>
+      <div class="hero-cta">
+        <a href="#category-sections" class="btn-brass">কালেকশন দেখুন <i class="fa-solid fa-arrow-right"></i></a>
+        <a href="#order-process" class="btn-outline">কিভাবে অর্ডার করবেন</a>
+      </div>
+      <div class="hero-stats">
+        <span>৫০০+ পণ্য</span>
+        <span>১০+ বছর অভিজ্ঞতা</span>
+        <span>৫★ রেটিং</span>
+      </div>
+    </div>
+
+    <div class="hero-right" id="heroSlider">
+      <% heroSlides.forEach(function(slide, idx){ %>
+        <article class="hero-slide <%= idx === 0 ? 'active' : '' %>" data-slide="<%= idx %>">
+          <img class="hero-main-img" src="<%= slide.image %>" alt="<%= slide.nameEn %>" />
+          <img class="hero-float-img" src="<%= slide.images[1] %>" alt="<%= slide.nameEn %> side" />
+          <div class="hero-info-card">
+            <h4><%= slide.name %></h4>
+            <p>৳<%= slide.price.toLocaleString('bn-BD') %></p>
+            <button type="button" class="btn-outline small product-modal-trigger" data-product-id="<%= slide.id %>">এখনই অর্ডার করুন</button>
+          </div>
+        </article>
+      <% }) %>
+
+      <div class="hero-dots" id="heroDots">
+        <% heroSlides.forEach(function(_, idx){ %>
+          <button data-go="<%= idx %>" class="<%= idx === 0 ? 'active' : '' %>"><%= String(idx + 1).padStart(2, '0') %></button>
+        <% }) %>
+      </div>
+      <div class="hero-progress"><span id="heroProgress"></span></div>
+    </div>
+  </div>
+</section>
+
+<section class="search-panel">
+  <div class="container search-panel-inner">
+    <h2>খুঁজুন</h2>
+    <form action="/search" method="GET" class="lux-search-form" id="homeSearchForm">
+      <input type="text" name="q" placeholder="পণ্যের নাম, আইডি বা ট্যাগ" />
+      <select name="cat">
+        <option value="">সব ক্যাটাগরি</option>
+        <% allCategories.forEach(function(cat){ %>
+          <option value="<%= cat.id %>"><%= cat.name %></option>
+        <% }) %>
+      </select>
+      <input type="number" name="min" placeholder="৳ থেকে" />
+      <input type="number" name="max" placeholder="৳ পর্যন্ত" />
+      <select name="sort">
+        <option value="featured">Featured</option>
+        <option value="price-asc">দাম: কম থেকে বেশি</option>
+        <option value="price-desc">দাম: বেশি থেকে কম</option>
+        <option value="top">জনপ্রিয়তা</option>
+      </select>
+      <button type="submit" class="btn-brass">অনুসন্ধান করুন</button>
+    </form>
+  </div>
+</section>
+
+<section class="section top-selling">
+  <div class="container section-head split-head">
+    <div>
+      <p>BEST SELLERS</p>
+      <h2>সর্বাধিক বিক্রিত</h2>
+    </div>
+    <div class="scroll-nav">
+      <button type="button" class="scroll-btn" data-track="#topSellingTrack" data-dir="-1"><i class="fa-solid fa-arrow-left"></i></button>
+      <button type="button" class="scroll-btn" data-track="#topSellingTrack" data-dir="1"><i class="fa-solid fa-arrow-right"></i></button>
+    </div>
+  </div>
+  <div class="product-track" id="topSellingTrack" data-auto-scroll="true">
+    <% topSellingProducts.forEach(function(product){ %>
+      <%- include('partials/product-card', { product }) %>
+    <% }) %>
+  </div>
+</section>
+
+<div class="brand-marquee">
+  <div>
+    <span>✦ HANDCRAFTED ✦ PREMIUM QUALITY ✦ CUSTOM ORDERS ✦ FAST DELIVERY ✦ 1 YEAR WARRANTY ✦ BEST PRICE ✦</span>
+    <span>✦ HANDCRAFTED ✦ PREMIUM QUALITY ✦ CUSTOM ORDERS ✦ FAST DELIVERY ✦ 1 YEAR WARRANTY ✦ BEST PRICE ✦</span>
+  </div>
+</div>
+
+<div id="category-sections">
+  <% categorySections.forEach(function(section, idx){ %>
+    <section class="section category-showcase <%= idx % 2 === 0 ? 'odd' : 'even' %>">
+      <div class="container showcase-grid">
+        <aside class="showcase-info">
+          <i class="<%= section.faIcon %>" style="color:<%= section.color %>"></i>
+          <h3><%= section.name %></h3>
+          <p>সমকালীন নকশা ও প্রিমিয়াম ফিনিশে তৈরি <%= section.name %> কালেকশন।</p>
+          <span class="count-badge"><%= section.products.length %> টি নির্বাচিত পণ্য</span>
+          <a class="btn-outline" href="/category/<%= section.id %>">সকল দেখুন</a>
+        </aside>
+        <div class="product-track" data-auto-scroll="false">
+          <% section.products.forEach(function(product){ %>
+            <%- include('partials/product-card', { product }) %>
+          <% }) %>
+        </div>
+      </div>
+    </section>
+    <% if (idx !== categorySections.length - 1) { %>
+      <div class="brand-marquee mid"><div><span>✦ HANDCRAFTED ✦ PREMIUM QUALITY ✦ CUSTOM ORDERS ✦ FAST DELIVERY ✦</span><span>✦ HANDCRAFTED ✦ PREMIUM QUALITY ✦ CUSTOM ORDERS ✦ FAST DELIVERY ✦</span></div></div>
+    <% } %>
+  <% }) %>
+</div>
+
+<section class="section order-process" id="order-process">
+  <div class="container">
+    <h2 class="center">যেভাবে অর্ডার করবেন</h2>
+    <div class="timeline">
+      <article>
+        <span class="num">01</span>
+        <i class="fa-regular fa-comments"></i>
+        <h4>পণ্য নির্বাচন</h4>
+        <p>আপনার পছন্দের পণ্য বেছে নিন এবং তথ্য যাচাই করুন।</p>
+      </article>
+      <article>
+        <span class="num">02</span>
+        <i class="fa-brands fa-whatsapp"></i>
+        <h4>WhatsApp এ যোগাযোগ</h4>
+        <p>পণ্যের আইডি ও পরিমাণ পাঠিয়ে অর্ডার কনফার্ম করুন।</p>
+      </article>
+      <article>
+        <span class="num">03</span>
+        <i class="fa-regular fa-box-check"></i>
+        <h4>অর্ডার যাচাই</h4>
+        <p>আমাদের টিম আপনার অর্ডার যাচাই করে ডেলিভারি শিডিউল করবে।</p>
+      </article>
+      <article>
+        <span class="num">04</span>
+        <i class="fa-regular fa-truck-fast"></i>
+        <h4>ডেলিভারি ও ইনস্টলেশন</h4>
+        <p>দ্রুত ও নিরাপদ ডেলিভারির সাথে প্রয়োজনে ইনস্টলেশন সাপোর্ট।</p>
+      </article>
+    </div>
+
+    <div class="cta-band">
+      <h3>এখনই WhatsApp এ যোগাযোগ করুন</h3>
+      <p>অর্ডার নিশ্চিত করতে সরাসরি আমাদের বিক্রয় প্রতিনিধির সাথে কথা বলুন।</p>
+      <a href="https://wa.me/8801700000000" target="_blank" rel="noopener" class="btn-wa-large"><i class="fa-brands fa-whatsapp"></i> WhatsApp এ অর্ডার করুন</a>
+    </div>
+  </div>
+</section>
+
+<section class="section stats-strip">
+  <div class="container stats-grid">
+    <article><h3 data-counter="500">0</h3><p>পণ্য সংখ্যা</p></article>
+    <article><h3 data-counter="10">0</h3><p>বছরের অভিজ্ঞতা</p></article>
+    <article><h3 data-counter="50000">0</h3><p>সন্তুষ্ট গ্রাহক</p></article>
+    <article><h3 data-counter="98">0</h3><p>পজিটিভ রিভিউ (%)</p></article>
+  </div>
+</section>
+
+<section class="section contact-block" id="contact-block">
+  <div class="container contact-grid">
+    <div>
+      <p class="kicker">CONTACT</p>
+      <h2>আপনার স্বপ্নের ফার্নিচার নিয়ে কথা বলি</h2>
+      <ul>
+        <li><i class="fa-regular fa-location-dot"></i> ধানমন্ডি, ঢাকা 1205</li>
+        <li><i class="fa-regular fa-phone"></i> 01700-000000</li>
+        <li><i class="fa-brands fa-whatsapp"></i> WhatsApp Live Support</li>
+        <li><i class="fa-regular fa-clock"></i> সকাল 10টা - রাত 10টা</li>
+      </ul>
+      <a class="btn-wa-large" href="https://wa.me/8801700000000" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> WhatsApp এ অর্ডার করুন</a>
+    </div>
+    <div class="map-card">
+      <i class="fa-solid fa-location-dot"></i>
+      <h4>Showroom Location</h4>
+      <p>House 12, Road 7, Dhanmondi, Dhaka</p>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/footer') %>
